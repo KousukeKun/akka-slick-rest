@@ -17,7 +17,7 @@ object Main extends App with Config with MigrationConfig with Routes {
   protected implicit val materializer: ActorMaterializer = ActorMaterializer()
 
   // Run Database Migration (trait MigrationConfig)
-  // migrate()
+  migrate()
 
   Http().bindAndHandle(handler = logRequestResult("log")(routes), interface = httpInterface, port = httpPort)
 }

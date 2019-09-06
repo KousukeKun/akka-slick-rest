@@ -1,9 +1,10 @@
 package restapi
 
 import akka.http.scaladsl.server.Directives._
-// import api.{CommentsApi, PostsApi, ApiErrorHandler, UsersApi}
+import api.{ApiErrorHandler, UsersApi}
 
-trait Routes/* extends ApiErrorHandler with UsersApi with PostsApi with CommentsApi */{
+trait Routes extends ApiErrorHandler with UsersApi /*extends ApiErrorHandler with UsersApi*/
+{
   // val routes =
   //   pathPrefix("v1") {
   //     usersApi ~
@@ -11,5 +12,7 @@ trait Routes/* extends ApiErrorHandler with UsersApi with PostsApi with Comments
   //     commentsApi
   //   } ~ path("")(getFromResource("public/index.html"))
 
-  val routes = path("")(getFromResource("public/index.html"))
+  val routes = pathPrefix("v1") {
+    usersApiRoutes
+  } ~ path("")(getFromResource("public/index.html"))
 }
